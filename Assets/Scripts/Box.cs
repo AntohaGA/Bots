@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Box : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public bool IsTaken { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public event Action Taked;
+
+    public void Init(Vector3 position)
     {
-        
+        transform.SetPositionAndRotation(position, Quaternion.identity);
+        IsTaken = false;
     }
 }

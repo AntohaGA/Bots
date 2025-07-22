@@ -6,15 +6,14 @@ public class Base : MonoBehaviour
     [SerializeField] private Bot _bot;
     [SerializeField] private PoolBoxes _poolResources;
     [SerializeField] private PoolBots _poolBots;
+    [SerializeField] private float scanInterval;
 
-    [SerializeField] private float scanInterval = 0.2f;
-    [SerializeField] private int _countMaxBots = 3;
-
+    private int _countMaxBots = 3;
     private int _countBoxes = 0;
 
     private void Awake()
     {
-        _poolBots.Init(3, 3, _bot);
+        _poolBots.Init(_bot);
     }
 
     private void Start()
@@ -51,9 +50,9 @@ public class Base : MonoBehaviour
 
         if (bot != null)
         {
+            bot.Init(transform.position, this);
             box.IsTaken = true;
-            bot.Init(transform.position);
-            bot.GoForBox(box, this);
+            bot.BringBox(box);
 
             return;
         }

@@ -6,10 +6,9 @@ public class BoxSpawner : MonoBehaviour
 {
     [SerializeField] private PoolBoxes _poolBoxes;
     [SerializeField] private Box _prefabBox;
+    [SerializeField] private Map _map;
 
     [SerializeField] private float _spawnInterval = 1f;
-
-    private SpawnArea _spawnArea = new ();
 
     private int _maxAttempts = 10;
     private float _checkRadius = 1f;
@@ -42,7 +41,7 @@ public class BoxSpawner : MonoBehaviour
     {
         for (int attempt = 0; attempt < _maxAttempts; attempt++)
         {
-            Vector3 spawnPos = _spawnArea.GetRandomPosition();
+            Vector3 spawnPos = _map.GetSpawnPosition();
             int count = Physics.OverlapSphereNonAlloc(spawnPos, _checkRadius, _overlapResults);
 
             if (count == 0)

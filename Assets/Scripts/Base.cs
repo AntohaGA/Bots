@@ -36,11 +36,15 @@ public class Base : MonoBehaviour
         }
     }
 
-    public void TakeBox(Bot bot, Box box)
+    public void TakeBox(Box box)
     {
         _countBoxes++;
         Debug.Log("box count" + _countBoxes);
         _poolResources.ReturnInstance(box);
+    }
+
+    public void TakeBot(Bot bot)
+    {
         _poolBots.ReturnInstance(bot);
     }
 
